@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.hero{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.num{
+    width: 14rem;
+    background-color: #ead1a7;
+    color: red;
+    font-size: 2rem;
+    position: absolute;
+    height: 4rem;
+    top: 253px;
+    left: 454px;
+    justify-content: center;
+    align-items: center;
+   
+    
+}

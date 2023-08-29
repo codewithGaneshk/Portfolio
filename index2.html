@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width=350 height=350></canvas> 
+</body>
+<script>
+    var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+var xIndex = 0;
+var yIndex = 0;
+var cols = 5;
+var rows = 4;
+var spriteWidth = 265;
+var spriteHeight = 200;
+
+var sheet = new Image();
+sheet.onload = function() {
+  animate();
+}
+sheet.src = "https://i.stack.imgur.com/eL5yV.png";
+var frame = 0;
+
+function animate() {
+  requestAnimationFrame(animate);
+  // 60FPS / 4 => 15FPS
+  if ((++frame) % 4 > 0) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // update the current column
+  xIndex = (xIndex + 1) % cols;
+  // update the current row if x is 0
+  yIndex = xIndex === 0 ? (yIndex + 1) % rows : yIndex;
+  // three cells are empty on the last row...
+  if (yIndex === (rows - 1) && xIndex === 2)
+    xIndex = yIndex = 0;
+  // update both sourceX and sourceY
+  ctx.drawImage(sheet,
+    xIndex * spriteWidth, yIndex * spriteHeight, spriteWidth, spriteHeight,
+    0, 0, spriteWidth, spriteHeight);
+}
+    </script>
+</html>
